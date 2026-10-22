@@ -69,3 +69,7 @@ npm run build
 An end-to-end browser script covering registration, onboarding, enrolment, lesson completion, quizzes, events, labs, adviser and partnership forms, the AI tutor, admin check-in, governance, certificates and the presentation mode was run against this build with Playwright (24/24 journeys passing).
 
 See `IMPLEMENTATION_REPORT.md` for what is complete, what is fictional, which integrations need credentials, and what remains for Phase Two.
+
+## Deploying on Vercel
+
+The repository ships a seeded SQLite database (`data/academy.db`). On Vercel the filesystem is read-only, so the app copies that file to `/tmp` on cold start: every page and feature works out of the box, but new registrations and progress are per-instance and reset on redeploy. For persistent data set `DATABASE_URL` (and `DATABASE_AUTH_TOKEN`) to a Turso/libsql database, or migrate to PostgreSQL. Optional: `ANTHROPIC_API_KEY` for the live AI tutor, `AUTH_SECRET` for session signing, `NEXT_PUBLIC_SITE_URL` for certificate links.
