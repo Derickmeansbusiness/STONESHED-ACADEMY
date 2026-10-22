@@ -5,9 +5,9 @@ import { Camera } from "lucide-react";
 /** Camera-based ticket scanner using the browser BarcodeDetector API where available; falls back to manual entry. */
 export function QrScanner({ label }: { label: string }) {
   const [on, setOn] = useState(false);
-  const [supported, setSupported] = useState(false);
+  const [supported, setSupported] = useState<boolean | null>(null);
   const video = useRef<HTMLVideoElement>(null);
-  useEffect(() => { setSupported(typeof window !== "undefined" && "BarcodeDetector" in window); }, []);
+  useEffect(() => { const id = requestAnimationFrame(() => setSupported("BarcodeDetector" in window)); return () => cancelAnimationFrame(id); }, []);
   useEffect(() => {
     if (!on) return;
     let stream: MediaStream | null = null; let raf = 0;
@@ -27,7 +27,8 @@ export function QrScanner({ label }: { label: string }) {
     })();
     return () => { cancelAnimationFrame(raf); stream?.getTracks().forEach((t) => t.stop()); };
   }, [on]);
-  if (!supported) return <p className="text-xs text-steel">{label}: {typeof window !== "undefined" ? "BarcodeDetector API not available in this browser — use manual entry." : ""}</p>;
+  if (supported === null) return null;
+  if (!supported) return <p className="text-xs text-steel">{label}: BarcodeDetector API not available in this browser — use manual entry.</p>;
   return (
     <div>
       <button type="button" onClick={() => setOn((v) => !v)} className="inline-flex items-center gap-2 rounded-lg border border-mist px-3 py-2 text-xs font-semibold hover:border-finance"><Camera className="h-4 w-4" />{label}</button>

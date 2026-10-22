@@ -35,7 +35,8 @@ export function SiteHeader({ user }: { user: SessionUser | null }) {
     window.addEventListener("scroll", fn, { passive: true });
     return () => window.removeEventListener("scroll", fn);
   }, []);
-  useEffect(() => { setOpen(false); setUserMenu(false); }, [pathname]);
+  const [lastPath, setLastPath] = useState(pathname);
+  if (lastPath !== pathname) { setLastPath(pathname); setOpen(false); setUserMenu(false); }
 
   const otherLocale = locale === "en" ? "fr" : "en";
   const switchPath = pathname.replace(`/${locale}`, `/${otherLocale}`) || `/${otherLocale}`;
@@ -57,7 +58,7 @@ export function SiteHeader({ user }: { user: SessionUser | null }) {
             const full = `/${locale}${href}`;
             const active = pathname.startsWith(full);
             return (
-              <Link key={key} href={full} className={cn("rounded-full px-3 py-2 text-[13.5px] font-medium transition", darkHeader ? "text-white/80 hover:bg-white/10 hover:text-white" : "text-slate hover:bg-cloud hover:text-royal", active && (darkHeader ? "bg-white/15 text-white" : "bg-cloud text-royal"))}>
+              <Link key={key} href={full} className={cn("whitespace-nowrap rounded-full px-2.5 py-2 text-[13px] font-medium transition", key === "about" && "hidden 2xl:inline-flex", darkHeader ? "text-white/80 hover:bg-white/10 hover:text-white" : "text-slate hover:bg-cloud hover:text-royal", active && (darkHeader ? "bg-white/15 text-white" : "bg-cloud text-royal"))}>
                 {t.nav[key]}
               </Link>
             );
@@ -65,8 +66,8 @@ export function SiteHeader({ user }: { user: SessionUser | null }) {
         </nav>
 
         <div className="hidden items-center gap-2 lg:flex">
-          <Link href={`/${locale}/ask`} className={cn("inline-flex items-center gap-1.5 rounded-full px-3 py-2 text-[13px] font-semibold transition", darkHeader ? "text-sky hover:bg-white/10" : "text-finance hover:bg-cloud")}>
-            <Sparkles className="h-4 w-4" /> {t.nav.ask}
+          <Link href={`/${locale}/ask`} aria-label={t.nav.ask} title={t.nav.ask} className={cn("inline-flex items-center gap-1.5 whitespace-nowrap rounded-full px-3 py-2 text-[13px] font-semibold transition", darkHeader ? "text-sky hover:bg-white/10" : "text-finance hover:bg-cloud")}>
+            <Sparkles className="h-4 w-4" /> <span className="hidden 2xl:inline">{t.nav.ask}</span>
           </Link>
           <Link href={switchPath} hrefLang={otherLocale} className={cn("rounded-full border px-2.5 py-1.5 text-[12px] font-bold tracking-wider transition", darkHeader ? "border-white/25 text-white hover:bg-white/10" : "border-mist text-royal hover:border-finance")} aria-label={t.nav.language}>
             {locale === "en" ? "FR" : "EN"}
@@ -94,7 +95,7 @@ export function SiteHeader({ user }: { user: SessionUser | null }) {
             </div>
           ) : (
             <>
-              <Link href={`/${locale}/signin`} className={cn("rounded-full px-3 py-2 text-[13.5px] font-semibold", darkHeader ? "text-white hover:bg-white/10" : "text-royal hover:bg-cloud")}>{t.nav.signIn}</Link>
+              <Link href={`/${locale}/signin`} className={cn("whitespace-nowrap rounded-full px-3 py-2 text-[13.5px] font-semibold", darkHeader ? "text-white hover:bg-white/10" : "text-royal hover:bg-cloud")}>{t.nav.signIn}</Link>
               <Button href={`/${locale}/register`} size="sm" variant={darkHeader ? "light" : "primary"}>{t.nav.startFree}</Button>
             </>
           )}

@@ -12,7 +12,6 @@ import type { FundField } from "@/lib/db/schema";
  */
 
 const BROCHURE = "Stoneshed mutual fund brochure (reference copy not attached — values quoted from the project brief)";
-const REG_GOLD = "FCP Stoneshed Gold — management regulations (not attached)";
 const INFO_GOLD = "FCP Stoneshed Gold — information document (not attached)";
 const INFO_CLASSIC = "FCP Stoneshed Classic — information document (not attached)";
 

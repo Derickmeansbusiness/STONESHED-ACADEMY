@@ -16,11 +16,11 @@ export function LabShell({ slug, title, intro, inputs, children, onReset, aside 
         <Link href={`/${locale}/lab`} className="inline-flex items-center gap-1 text-sm font-medium text-steel hover:text-royal"><ChevronLeft className="h-4 w-4" />{t.lab.title}</Link>
         <div className="mt-4 max-w-3xl"><p className="eyebrow mb-2">{t.nav.lab}</p><h1 className="display-md text-ink">{title}</h1><p className="mt-4 text-lg leading-relaxed text-steel">{intro}</p></div>
         <div className="mt-10 grid gap-6 lg:grid-cols-[360px_1fr]">
-          <aside className="space-y-5 rounded-3xl border border-mist/70 bg-white p-6 shadow-[var(--shadow-soft)] lg:sticky lg:top-24 lg:self-start">
+          <aside className="min-w-0 space-y-5 rounded-3xl border border-mist/70 bg-white p-6 shadow-[var(--shadow-soft)] lg:sticky lg:top-24 lg:self-start">
             <div className="flex items-center justify-between"><p className="eyebrow">{t.lab.inputs}</p>{onReset && <button onClick={onReset} className="inline-flex items-center gap-1 text-xs font-semibold text-steel hover:text-royal"><RotateCcw className="h-3.5 w-3.5" />{t.lab.reset}</button>}</div>
             {inputs}
           </aside>
-          <div className="space-y-6">{children}{aside}</div>
+          <div className="min-w-0 space-y-6">{children}{aside}</div>
         </div>
         <Notice tone="compliance" className="mt-10">{t.lab.labDisclaimer}</Notice>
       </Container>

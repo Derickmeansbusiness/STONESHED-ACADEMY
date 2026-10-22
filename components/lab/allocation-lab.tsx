@@ -13,7 +13,7 @@ const DEF: Record<string, number> = { cash: 20, tbills: 20, bonds: 40, equity: 1
 const SCENARIOS = ["rates_up", "equity_crash", "liquidity_squeeze", "inflation_spike"] as const;
 
 export function AllocationLab({ title, intro }: { title: string; intro: string }) {
-  const { locale, t } = useLocale();
+  const { locale } = useLocale();
   const [w, setW] = useState(DEF);
   const [scenario, setScenario] = useState<(typeof SCENARIOS)[number]>("rates_up");
   const total = Object.values(w).reduce((a, b) => a + b, 0);

@@ -98,16 +98,16 @@ function SceneArt({ index, seed }: { index: number; seed: string }) {
   let h = 0; for (let i = 0; i < seed.length; i++) h = (h * 31 + seed.charCodeAt(i)) >>> 0;
   const palettes = [["#071A36", "#0B2F73"], ["#0B2F73", "#1265C8"], ["#071A36", "#1265C8"], ["#0B2F73", "#24334A"], ["#1265C8", "#0B2F73"], ["#071A36", "#0F766E"]];
   const [a, b] = palettes[(index + h) % palettes.length];
-  const kind = (index + (h >> 3)) % 4;
+  const kind = (index + (h >>> 3)) % 4;
   const id = `sc${h}${index}`;
   return (
     <svg viewBox="0 0 1600 900" className="h-full w-full" preserveAspectRatio="xMidYMid slice" aria-hidden>
       <defs><linearGradient id={id} x1="0" y1="0" x2="1" y2="1"><stop offset="0" stopColor={a} /><stop offset="1" stopColor={b} /></linearGradient></defs>
       <rect width="1600" height="900" fill={`url(#${id})`} />
       <g stroke="#58B8F5" strokeOpacity="0.12">{Array.from({ length: 17 }, (_, i) => <line key={i} x1={i * 100} y1="0" x2={i * 100} y2="900" />)}{Array.from({ length: 10 }, (_, i) => <line key={`h${i}`} x1="0" y1={i * 100} x2="1600" y2={i * 100} />)}</g>
-      {kind === 0 && Array.from({ length: 10 }, (_, i) => <rect key={i} x={200 + i * 120} y={700 - ((h >> i) % 350) - i * 15} width="60" height={((h >> i) % 350) + i * 15} rx="8" fill="#58B8F5" opacity={0.35 + i * 0.06} />)}
+      {kind === 0 && Array.from({ length: 10 }, (_, i) => <rect key={i} x={200 + i * 120} y={700 - ((h >>> i) % 350) - i * 15} width="60" height={((h >>> i) % 350) + i * 15} rx="8" fill="#58B8F5" opacity={0.35 + i * 0.06} />)}
       {kind === 1 && <path d={`M100 ${650 - (h % 80)} C 400 ${600}, 700 ${500 + (h % 60)}, 1000 ${350} S 1400 ${250}, 1500 ${180}`} fill="none" stroke="#58B8F5" strokeWidth="6" strokeLinecap="round" />}
-      {kind === 2 && Array.from({ length: 14 }, (_, i) => <circle key={i} cx={150 + ((h >> i) % 1300)} cy={120 + ((h >> (i + 2)) % 650)} r={8 + (i % 4) * 6} fill="#F7FAFF" opacity={0.3 + (i % 5) * 0.12} />)}
+      {kind === 2 && Array.from({ length: 14 }, (_, i) => <circle key={i} cx={150 + ((h >>> i) % 1300)} cy={120 + ((h >>> (i + 2)) % 650)} r={8 + (i % 4) * 6} fill="#F7FAFF" opacity={0.3 + (i % 5) * 0.12} />)}
       {kind === 3 && [320, 240, 160, 80].map((r, i) => <circle key={r} cx="1100" cy="450" r={r} fill="none" stroke="#58B8F5" strokeOpacity={0.25 + i * 0.15} strokeWidth="26" strokeDasharray={`${r * 3} ${r * 2}`} />)}
     </svg>
   );

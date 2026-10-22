@@ -26,9 +26,9 @@ export function CoverArt({ seed, theme = "blue", className, pattern }: { seed: s
   const h = hash(seed);
   const p = pattern ?? (["bars", "curve", "nodes", "rings"] as const)[h % 4];
   const id = `g${h.toString(36)}`;
-  const bars = Array.from({ length: 9 }, (_, i) => 20 + ((h >> (i * 3)) % 60));
-  const pts = Array.from({ length: 8 }, (_, i) => ({ x: 20 + i * 52, y: 150 - ((h >> (i * 2)) % 90) - i * 5 }));
-  const nodes = Array.from({ length: 9 }, (_, i) => ({ x: 40 + ((h >> (i * 2)) % 320), y: 30 + ((h >> (i * 3 + 1)) % 140) }));
+  const bars = Array.from({ length: 9 }, (_, i) => 20 + ((h >>> (i * 3)) % 60));
+  const pts = Array.from({ length: 8 }, (_, i) => ({ x: 20 + i * 52, y: 150 - ((h >>> (i * 2)) % 90) - i * 5 }));
+  const nodes = Array.from({ length: 9 }, (_, i) => ({ x: 40 + ((h >>> (i * 2)) % 320), y: 30 + ((h >>> (i * 3 + 1)) % 140) }));
   return (
     <svg viewBox="0 0 400 200" preserveAspectRatio="xMidYMid slice" className={cn("h-full w-full", className)} aria-hidden>
       <defs>
@@ -63,7 +63,7 @@ export function CoverArt({ seed, theme = "blue", className, pattern }: { seed: s
       )}
       {p === "rings" && (
         <>
-          {[90, 70, 50, 30].map((r, i) => <circle key={r} cx="300" cy="110" r={r} fill="none" stroke={t.accent} strokeOpacity={0.25 + i * 0.15} strokeWidth="10" strokeDasharray={`${r * 4} ${r * 2.5}`} transform={`rotate(${(h >> i) % 360} 300 110)`} />)}
+          {[90, 70, 50, 30].map((r, i) => <circle key={r} cx="300" cy="110" r={r} fill="none" stroke={t.accent} strokeOpacity={0.25 + i * 0.15} strokeWidth="10" strokeDasharray={`${r * 4} ${r * 2.5}`} transform={`rotate(${(h >>> i) % 360} 300 110)`} />)}
           <circle cx="300" cy="110" r="12" fill={t.accent} />
         </>
       )}

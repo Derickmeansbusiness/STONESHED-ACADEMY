@@ -5,6 +5,8 @@ import { Container } from "@/components/ui/container";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { Notice } from "@/components/ui/notice";
 import { Reveal } from "@/components/ui/reveal";
+import { STILLS } from "@/lib/content/generated-media";
+import { Still } from "@/components/ui/still";
 
 export const metadata: Metadata = { title: "About" };
 
@@ -16,6 +18,7 @@ export default async function AboutPage({ params }: { params: Promise<{ locale: 
     <div className="pt-28 pb-12">
       <Container size="md">
         <Reveal><SectionHeading eyebrow={t.nav.about} title={t.about.title} sub={t.about.sub} size="lg" /></Reveal>
+        <Still still={STILLS.doualaDawn} className="mt-10 aspect-[21/9] rounded-3xl" />
         <div className="prose-sa mt-10">
           <p>{fr ? "Stoneshed Asset Management S.A. est une société de gestion agréée par la COSUMAF (COSUMAF-SGP-03/2023), active sur le marché financier de la CEMAC. Ses services comprennent la gestion collective, la gestion discrétionnaire de portefeuille, le conseil en investissements financiers, les solutions d'épargne et d'investissement, l'optimisation de trésorerie et de liquidité, et la construction de portefeuilles." : "Stoneshed Asset Management S.A. is a management company licensed by COSUMAF (COSUMAF-SGP-03/2023), operating within the CEMAC financial market. Its services include collective investment management, discretionary portfolio management, financial investment advisory, savings and investment solutions, treasury and liquidity optimisation, and portfolio construction."}</p>
           <p>{fr ? "En 2026, la société a étendu son activité de gestion collective avec deux fonds communs de placement : le FCP Stoneshed Classic (capitalisation, COSUMAF-FCP-01/2026) et le FCP Stoneshed Gold (distribution, COSUMAF-FCP-02/2026)." : "In 2026 the company expanded its collective management activity with two mutual funds: FCP Stoneshed Classic (capitalisation, COSUMAF-FCP-01/2026) and FCP Stoneshed Gold (distribution, COSUMAF-FCP-02/2026)."}</p>

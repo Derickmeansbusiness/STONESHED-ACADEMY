@@ -11,6 +11,8 @@ import { CoverArt } from "@/components/ui/cover-art";
 import { Button } from "@/components/ui/button";
 import { Notice } from "@/components/ui/notice";
 import { FundFlowDiagram } from "@/components/funds/fund-flow-diagram";
+import { STILLS } from "@/lib/content/generated-media";
+import { Still } from "@/components/ui/still";
 
 export const metadata: Metadata = { title: "Stoneshed Funds" };
 
@@ -43,7 +45,7 @@ export default async function FundsPage({ params }: { params: Promise<{ locale: 
           })}
         </div>
         <Reveal className="mt-6"><Link href={`/${locale}/funds/compare`} className="flex items-center justify-between rounded-3xl bg-royal p-6 text-white transition hover:bg-finance sm:p-8"><div><p className="eyebrow-light mb-1">{t.funds.compare}</p><p className="font-display text-xl font-bold sm:text-2xl">{t.home.fundsTitle}</p></div><GitCompare className="h-8 w-8 text-sky" /></Link></Reveal>
-        <section className="mt-20"><SectionHeading eyebrow={t.home.howEyebrow} title={locale === "fr" ? "Le circuit d'un FCP, de la souscription à la valorisation." : "The path of an FCP, from subscription to valuation."} /><div className="mt-10"><FundFlowDiagram /></div></section>
+        <section className="mt-20"><SectionHeading eyebrow={t.home.howEyebrow} title={locale === "fr" ? "Le circuit d'un FCP, de la souscription à la valorisation." : "The path of an FCP, from subscription to valuation."} /><div className="mt-10 grid gap-6 lg:grid-cols-[1.4fr_1fr]"><FundFlowDiagram /><Still still={STILLS.analysts} className="aspect-[4/3] rounded-3xl lg:aspect-auto" /></div></section>
         <div className="mt-12 space-y-3"><Notice tone="warning">{t.funds.notGold}</Notice><Notice tone="compliance">{t.funds.subscribeNotice}</Notice></div>
       </Container>
     </div>

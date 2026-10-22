@@ -46,7 +46,9 @@ export default async function DashboardPage({ params, searchParams }: { params: 
   const interests = profile?.interests ?? [];
   const interestCats: Record<string, string[]> = { money: ["foundations"], investing: ["investment"], funds: ["funds"], wealth: ["wealth"], markets: ["cemac"], treasury: ["business"], professional: ["research", "business"] };
   const wanted = new Set(interests.flatMap((i) => interestCats[i] ?? []));
-  const recommended = allCourses.filter((c) => !enrolledIds.has(c.id) && (wanted.size === 0 || wanted.has(c.category)) && c.lessonCount > 0).slice(0, 3);
+  const pool = allCourses.filter((c) => !enrolledIds.has(c.id) && c.lessonCount > 0);
+  const preferred = pool.filter((c) => wanted.size === 0 || wanted.has(c.category));
+  const recommended = [...preferred, ...pool.filter((c) => !preferred.includes(c))].slice(0, 3);
   const levelLabel = profile?.knowledgeLevel ? t.common[profile.knowledgeLevel as "beginner"] : t.common.beginner;
   const nextLevel = stats.lessonsDone >= 20 ? t.common.advanced : stats.lessonsDone >= 8 ? t.common.intermediate : t.common.beginner;
 

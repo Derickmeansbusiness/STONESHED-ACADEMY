@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 /**
  * Seeds the Stoneshed Academy database with approved educational content and clearly
  * fictional demonstration data. Idempotent: wipes content tables and re-inserts.

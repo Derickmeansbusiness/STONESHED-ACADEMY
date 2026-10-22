@@ -5,7 +5,7 @@
  * The schema is written with the Drizzle sqlite-core dialect; moving to
  * PostgreSQL is a dialect swap (pg-core) with the same table shapes.
  */
-import { sqliteTable, text, integer, real, index, uniqueIndex } from "drizzle-orm/sqlite-core";
+import { sqliteTable, text, integer, index, uniqueIndex } from "drizzle-orm/sqlite-core";
 import { sql } from "drizzle-orm";
 
 const now = sql`(unixepoch())`;

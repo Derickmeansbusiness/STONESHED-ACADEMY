@@ -8,7 +8,6 @@ const url = process.env.DATABASE_URL ?? "file:./data/academy.db";
 const authToken = process.env.DATABASE_AUTH_TOKEN;
 
 declare global {
-  // eslint-disable-next-line no-var
   var __stoneshedDbClient: Client | undefined;
 }
 

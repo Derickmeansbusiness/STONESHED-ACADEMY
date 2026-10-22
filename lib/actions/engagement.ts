@@ -28,7 +28,7 @@ export async function adviserInquiryAction(_prev: FormState, form: FormData): Pr
   if (!parsed.success) return { error: locale === "fr" ? "Veuillez vérifier les champs et accepter d'être contacté(e)." : "Please check the fields and consent to being contacted." };
   const h = await headers();
   const ip = h.get("x-forwarded-for") ?? "local";
-  if (!rateLimit(`adviser:${ip}`, 5, 60 * 60_000).ok) return { error: locale === "fr" ? "Trop de demandes. Réessayez plus tard." : "Too many requests. Try again later." };
+  if (!rateLimit(`adviser:${ip}`, 20, 60 * 60_000).ok) return { error: locale === "fr" ? "Trop de demandes. Réessayez plus tard." : "Too many requests. Try again later." };
   const user = await getSession();
   const d = parsed.data;
   const id = newId("inq");
@@ -49,7 +49,7 @@ const partnershipSchema = z.object({
   phone: z.string().trim().max(30).optional(),
   city: z.string().trim().min(2).max(60),
   country: z.string().trim().min(2).max(60),
-  expectedParticipants: z.coerce.number().int().min(1).max(100000).optional(),
+  expectedParticipants: z.preprocess((v) => (v === "" || v == null ? undefined : Number(v)), z.number().int().min(1).max(100000).optional()),
   requestedProgram: z.string().trim().min(2).max(120),
   deliveryFormat: z.enum(["on_campus", "online", "blended"]),
   preferredTiming: z.string().trim().max(120).optional(),
@@ -62,7 +62,7 @@ export async function partnershipInquiryAction(_prev: FormState, form: FormData)
   const parsed = partnershipSchema.safeParse(Object.fromEntries(form));
   if (!parsed.success) return { error: locale === "fr" ? "Veuillez vérifier les champs obligatoires." : "Please check the required fields." };
   const h = await headers();
-  if (!rateLimit(`partner:${h.get("x-forwarded-for") ?? "local"}`, 5, 60 * 60_000).ok) return { error: locale === "fr" ? "Trop de demandes. Réessayez plus tard." : "Too many requests. Try again later." };
+  if (!rateLimit(`partner:${h.get("x-forwarded-for") ?? "local"}`, 20, 60 * 60_000).ok) return { error: locale === "fr" ? "Trop de demandes. Réessayez plus tard." : "Too many requests. Try again later." };
   const user = await getSession();
   const d = parsed.data;
   const id = newId("pin");

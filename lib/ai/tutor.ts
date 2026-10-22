@@ -73,7 +73,7 @@ function hrefFor(reference: string, locale: Locale): string | undefined {
   return undefined;
 }
 
-function suggestionsFor(sources: TutorSource[], locale: Locale) {
+function suggestionsFor(sources: TutorSource[]) {
   const out: { label: string; href: string }[] = [];
   for (const s of sources) if (s.href && !out.some((o) => o.href === s.href)) out.push({ label: s.title, href: s.href });
   return out.slice(0, 3);
@@ -102,10 +102,10 @@ export async function askTutor(input: { question: string; locale: Locale; level?
   if (referral) answer += `\n\n${locale === "fr" ? "Cette question semble porter sur votre situation personnelle. L'Academy ne peut pas donner de conseil individuel : vous pouvez demander un échange avec un conseiller Stoneshed." : "This looks like a question about your personal situation. The Academy cannot give individual advice; you can request a conversation with a Stoneshed adviser."}`;
 
   await db.insert(schema.aiLogRecords).values({ id: newId("ai"), userId: input.userId ?? null, sessionId: input.sessionId, locale, question: question.slice(0, 2000), answer: answer.slice(0, 8000), mode, sourceIds: sources.map((s) => s.id), flagged: referral, latencyMs: Date.now() - t0 });
-  return { answer, sources, mode, referral, suggestions: suggestionsFor(sources, locale) };
+  return { answer, sources, mode, referral, suggestions: suggestionsFor(sources) };
 }
 
-function offlineAnswer(question: string, retrieved: { title: string; reference: string; content: string; sourceType: string }[], locale: Locale, mode: string): string {
+function offlineAnswer(_question: string, retrieved: { title: string; reference: string; content: string; sourceType: string }[], locale: Locale, mode: string): string {
   if (!retrieved.length) {
     return locale === "fr"
       ? "Je n'ai pas trouvé de source approuvée répondant à cette question. Je préfère ne pas inventer de réponse. Essayez de reformuler, consultez le glossaire, ou posez une question sur les fonds communs de placement, la valeur liquidative, les obligations, l'inflation ou le risque."

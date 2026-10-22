@@ -1,11 +1,10 @@
 import { getDictionary, pick, type Locale } from "@/lib/i18n";
 import { getSession } from "@/lib/auth/session";
-import { listCourses, listSeries, listArticles, listGlossary } from "@/lib/services/content";
+import { listSeries, listArticles, listGlossary } from "@/lib/services/content";
 import { updateCourseStatusAction, updateVideoStageAction } from "@/lib/actions/admin";
 import { PageTitle, Table, Td, Kpi, selectCls, btnCls } from "@/components/admin/ui";
 import { Badge } from "@/components/ui/badge";
 import { db, schema } from "@/lib/db";
-import { eq } from "drizzle-orm";
 
 const STAGES = ["idea", "research", "script", "compliance_review", "storyboard", "production", "quality_review", "subtitles", "published"];
 
@@ -14,7 +13,6 @@ export default async function AdminContent({ params }: { params: Promise<{ local
   const t = getDictionary(locale);
   const fr = locale === "fr";
   const [courses, series, articles, glossary, quizzes, user] = await Promise.all([db.query.courses.findMany({ with: { modules: { with: { lessons: true } } }, orderBy: [schema.courses.sortOrder] }), listSeries(), listArticles(), listGlossary(), db.query.quizzes.findMany(), getSession()]);
-  void listCourses;
   const path = `/${locale}/admin/content`;
   const lessons = courses.reduce((n, c) => n + c.modules.reduce((m, x) => m + x.lessons.length, 0), 0);
   const videos = series.flatMap((s) => s.videos.map((v) => ({ ...v, seriesTitle: pick(s, "title", locale) })));

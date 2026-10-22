@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { ArrowRight, Sparkles, ShieldCheck, FileCheck2, Landmark, GraduationCap, Building2, Users } from "lucide-react";
-import { getDictionary, pick, type Locale } from "@/lib/i18n";
+import { getDictionary, type Locale } from "@/lib/i18n";
 import { listCourses, listVideos, listEvents, listArticles, listFunds } from "@/lib/services/content";
 import { Container } from "@/components/ui/container";
 import { Button } from "@/components/ui/button";
@@ -18,6 +18,8 @@ import { EventCard } from "@/components/cards/event-card";
 import { ArticleCard } from "@/components/cards/article-card";
 import { CoverArt } from "@/components/ui/cover-art";
 import { ACADEMY_FILM } from "@/lib/content/academy-film";
+import { STILLS } from "@/lib/content/generated-media";
+import { Still } from "@/components/ui/still";
 
 export default async function HomePage({ params }: { params: Promise<{ locale: Locale }> }) {
   const { locale } = await params;
@@ -39,18 +41,18 @@ export default async function HomePage({ params }: { params: Promise<{ locale: L
         <HeroNetwork />
         <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-midnight to-transparent" />
         <Container className="relative z-10 pt-32 pb-24">
-          <Reveal>
+          <Reveal immediate>
             <p className="eyebrow-light mb-6 flex items-center gap-2"><span className="h-px w-8 bg-sky" />{t.home.eyebrow}</p>
           </Reveal>
-          <Reveal delay={0.1}><h1 className="display-xl max-w-4xl text-white">{t.home.heroTitle}</h1></Reveal>
-          <Reveal delay={0.2}><p className="mt-7 max-w-2xl text-lg leading-relaxed text-white/70 sm:text-xl">{t.home.heroSub}</p></Reveal>
-          <Reveal delay={0.3}>
+          <Reveal immediate delay={0.1}><h1 className="display-xl max-w-4xl text-white">{t.home.heroTitle}</h1></Reveal>
+          <Reveal immediate delay={0.2}><p className="mt-7 max-w-2xl text-lg leading-relaxed text-white/70 sm:text-xl">{t.home.heroSub}</p></Reveal>
+          <Reveal immediate delay={0.3}>
             <div className="mt-10 flex flex-wrap items-center gap-3">
               <Button href={`/${locale}/learn`} size="lg" variant="light">{t.home.ctaExplore} <ArrowRight className="h-4 w-4" /></Button>
               <FilmModal frames={frames} label={t.home.ctaFilm} trigger="outline" />
             </div>
           </Reveal>
-          <Reveal delay={0.5}>
+          <Reveal immediate delay={0.5}>
             <dl className="mt-16 grid max-w-3xl grid-cols-2 gap-6 border-t border-white/10 pt-8 sm:grid-cols-4">
               {[["7", locale === "fr" ? "catégories de cours" : "course categories"], ["8", locale === "fr" ? "laboratoires interactifs" : "interactive labs"], ["6", locale === "fr" ? "séries Academy TV" : "Academy TV series"], ["EN · FR", locale === "fr" ? "entièrement bilingue" : "fully bilingual"]].map(([n, l]) => (
                 <div key={l}><dt className="num font-display text-2xl font-extrabold text-white">{n}</dt><dd className="mt-1 text-xs text-white/55">{l}</dd></div>
@@ -68,6 +70,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: L
             <Reveal>
               <SectionHeading eyebrow={t.home.welcomeEyebrow} title={t.home.welcomeTitle} size="lg" />
               <p className="mt-6 text-[17px] leading-[1.8] text-slate">{t.home.welcomeBody}</p>
+              <Still still={STILLS.lectureHall} className="mt-8 aspect-[16/10] rounded-3xl shadow-[var(--shadow-lift)]" />
             </Reveal>
             <Stagger className="grid gap-4 sm:grid-cols-1">
               {t.home.welcomePillars.map((p, i) => (
@@ -114,6 +117,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: L
 
       {/* 6. Academy TV */}
       <section className="relative overflow-hidden bg-midnight py-24 text-white sm:py-32">
+        <Still still={STILLS.studio} overlay className="absolute inset-0" />
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,_rgba(18,101,200,0.3),_transparent_50%)]" />
         <Container className="relative">
           <Reveal className="flex flex-wrap items-end justify-between gap-6">
@@ -170,6 +174,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: L
               <SectionHeading eyebrow={t.home.eventsEyebrow} title={t.home.eventsTitle} />
               <p className="mt-5 text-[16px] leading-relaxed text-steel">{locale === "fr" ? "Masterclasses universitaires, séminaires Investissement 101 et ateliers de trésorerie, à Douala, Yaoundé et en ligne. Inscription gratuite avec billet QR." : "University masterclasses, Investment 101 seminars and treasury workshops in Douala, Yaoundé and online. Free registration with a QR ticket."}</p>
               <Button href={`/${locale}/events`} className="mt-8" variant="outline">{t.common.viewAll} <ArrowRight className="h-4 w-4" /></Button>
+              <Still still={STILLS.youngProfessional} className="mt-8 aspect-[16/10] rounded-3xl" />
             </Reveal>
             <Stagger className="space-y-4">
               {events.map((e) => <StaggerItem key={e.id}><EventCard event={e} locale={locale} /></StaggerItem>)}
@@ -225,6 +230,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: L
               <Button href={`/${locale}/institutions`} className="mt-8">{t.home.institutionsCta} <ArrowRight className="h-4 w-4" /></Button>
             </Reveal>
             <Stagger className="grid grid-cols-2 gap-4">
+              <StaggerItem className="col-span-2"><Still still={STILLS.businessOwner} className="aspect-[2.2/1] rounded-3xl" /></StaggerItem>
               {[[GraduationCap, locale === "fr" ? "Universités" : "Universities"], [Building2, locale === "fr" ? "Écoles de commerce" : "Business schools"], [Users, locale === "fr" ? "Organismes professionnels" : "Professional bodies"], [Landmark, locale === "fr" ? "Employeurs & trésoreries" : "Employers & treasuries"]].map(([Icon, label]) => {
                 const I = Icon as typeof GraduationCap;
                 return (

@@ -93,7 +93,7 @@ export async function onboardingAction(form: FormData) {
   const user = await getSession();
   const locale = isLocale(String(form.get("locale"))) ? String(form.get("locale")) : "en";
   if (!user) redirect(`/${locale}/signin`);
-  const parsed = onboardingSchema.safeParse({ interests: form.getAll("interests").map(String), audience: form.get("audience"), level: form.get("level"), locale: form.get("locale"), next: form.get("next") });
+  const parsed = onboardingSchema.safeParse({ interests: form.getAll("interests").map(String), audience: form.get("audience"), level: form.get("level"), locale: form.get("locale"), next: form.get("next") ?? undefined });
   if (!parsed.success) redirect(`/${locale}/onboarding`);
   const d = parsed.data;
   const pathway = d.interests[0] ?? "investing";

@@ -9,7 +9,7 @@ import { Slider, Stat } from "@/components/home/lab-preview";
 import { cn } from "@/lib/utils";
 
 export function RiskLab({ title, intro }: { title: string; intro: string }) {
-  const { locale, t } = useLocale();
+  const { locale } = useLocale();
   const [amount, setAmount] = useState(1_000_000);
   const [active, setActive] = useState<string>("market");
   const [intensity, setIntensity] = useState(1);

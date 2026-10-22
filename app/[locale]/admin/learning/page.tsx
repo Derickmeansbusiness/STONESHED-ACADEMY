@@ -2,7 +2,7 @@ import { desc } from "drizzle-orm";
 import { getDictionary, pick, formatDate, type Locale } from "@/lib/i18n";
 import { db, schema } from "@/lib/db";
 import { revokeCertificateAction } from "@/lib/actions/admin";
-import { PageTitle, Table, Td, Kpi, btnCls } from "@/components/admin/ui";
+import { PageTitle, Table, Td, Kpi } from "@/components/admin/ui";
 import { Badge } from "@/components/ui/badge";
 
 export default async function AdminLearning({ params }: { params: Promise<{ locale: Locale }> }) {
