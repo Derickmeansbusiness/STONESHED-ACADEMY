@@ -61,3 +61,6 @@ export const institutionUserRelations = relations(s.institutionUsers, ({ one }) 
 }));
 export const inquiryRelations = relations(s.adviserInquiries, ({ many }) => ({ consultations: many(s.consultationRequests) }));
 export const consultationRelations = relations(s.consultationRequests, ({ one }) => ({ inquiry: one(s.adviserInquiries, { fields: [s.consultationRequests.inquiryId], references: [s.adviserInquiries.id] }) }));
+export const lessonNotesRelations = relations(s.lessonNotes, ({ one }) => ({ lesson: one(s.lessons, { fields: [s.lessonNotes.lessonId], references: [s.lessons.id] }) }));
+export const lessonProgressRelations = relations(s.lessonProgress, ({ one }) => ({ lesson: one(s.lessons, { fields: [s.lessonProgress.lessonId], references: [s.lessons.id] }) }));
+export const videoProgressRelations = relations(s.videoProgress, ({ one }) => ({ video: one(s.videos, { fields: [s.videoProgress.videoId], references: [s.videos.id] }) }));

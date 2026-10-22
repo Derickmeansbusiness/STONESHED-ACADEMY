@@ -1,0 +1,305 @@
+import type { GlossaryDef } from "./types";
+
+/** Bilingual financial glossary for the CEMAC investor. Definitions are educational; none is a recommendation. */
+export const GLOSSARY: GlossaryDef[] = [
+  // ---------------------------------------------------------------- Funds
+  { slug: "mutual-fund", category: "Funds", related: ["opcvm", "unit", "net-asset-value", "management-company"],
+    term: { en: "Mutual fund (FCP)", fr: "Fonds commun de placement (FCP)" },
+    definition: {
+      en: "A collective investment vehicle that pools money from many investors and invests it according to rules set out in its management regulations. Investors own units rather than the underlying securities. In CEMAC, an FCP has no legal personality of its own and is run by a COSUMAF-licensed management company, with assets held by a separate depositary. It lets someone with 10,000 FCFA access a diversified, professionally managed portfolio.",
+      fr: "Véhicule de placement collectif qui met en commun l'argent de nombreux investisseurs et l'investit selon les règles de son règlement de gestion. Les investisseurs détiennent des parts, non les titres sous-jacents. Dans la CEMAC, un FCP n'a pas de personnalité juridique propre et est géré par une société de gestion agréée par la COSUMAF, ses actifs étant conservés par un dépositaire distinct. Il permet à quelqu'un disposant de 10 000 FCFA d'accéder à un portefeuille diversifié et géré professionnellement.",
+    } },
+  { slug: "opcvm", category: "Funds", related: ["mutual-fund", "cosumaf", "prospectus"],
+    term: { en: "OPCVM (collective investment undertaking)", fr: "OPCVM (organisme de placement collectif en valeurs mobilières)" },
+    definition: {
+      en: "The general legal category for regulated collective investment vehicles in the CEMAC market, covering mutual funds (FCP) and investment companies with variable capital (SICAV). An OPCVM must be approved by COSUMAF before it is offered to the public and must publish an information document describing its objective, strategy, risks and fees.",
+      fr: "Catégorie juridique générale des véhicules de placement collectif réglementés sur le marché de la CEMAC, regroupant les fonds communs de placement (FCP) et les sociétés d'investissement à capital variable (SICAV). Un OPCVM doit être agréé par la COSUMAF avant d'être proposé au public et doit publier un document d'information décrivant son objectif, sa stratégie, ses risques et ses frais.",
+    } },
+  { slug: "net-asset-value", category: "Valuation", related: ["unit", "mutual-fund", "subscription", "redemption"],
+    term: { en: "Net asset value (NAV)", fr: "Valeur liquidative" },
+    definition: {
+      en: "The value of one unit of a fund: total assets minus liabilities, divided by the number of units in issue. Subscriptions and redemptions are executed at the NAV, plus or minus any entry or exit fees. It moves when the fund's holdings change in value, when income accrues or is distributed, and when fees are charged. It does not move because of inflows or outflows alone.",
+      fr: "Valeur d'une part de fonds : total des actifs moins les passifs, divisé par le nombre de parts en circulation. Les souscriptions et rachats s'exécutent à la valeur liquidative, majorée ou minorée des éventuels frais d'entrée ou de sortie. Elle bouge quand la valeur des actifs du fonds change, quand des revenus courent ou sont distribués, et quand des frais sont prélevés. Elle ne bouge pas du seul fait des entrées ou sorties d'investisseurs.",
+    } },
+  { slug: "unit", category: "Funds", related: ["net-asset-value", "mutual-fund", "subscription"],
+    term: { en: "Unit (fund share)", fr: "Part (de fonds)" },
+    definition: {
+      en: "The fraction of a mutual fund owned by an investor. Each unit represents an equal share of the fund's net assets. If you subscribe 50,000 FCFA when the NAV is 10,000 FCFA, you receive five units before any entry fee. Units are created when investors subscribe and cancelled when they redeem.",
+      fr: "Fraction d'un fonds commun de placement détenue par un investisseur. Chaque part représente une quote-part égale de l'actif net du fonds. Si vous souscrivez 50 000 FCFA quand la valeur liquidative est de 10 000 FCFA, vous recevez cinq parts avant frais d'entrée éventuels. Les parts sont créées lors des souscriptions et annulées lors des rachats.",
+    } },
+  { slug: "subscription", category: "Funds", related: ["redemption", "unit", "entry-exit-fee"],
+    term: { en: "Subscription", fr: "Souscription" },
+    definition: {
+      en: "The act of buying units in a fund. The investor pays cash, and the fund issues new units at the applicable NAV. Fund documents set the minimum initial subscription, the cut-off times, and how long settlement takes. Subscriptions are handled through the management company's approved process and its depositary, never informally.",
+      fr: "Acte d'achat de parts d'un fonds. L'investisseur verse des liquidités et le fonds émet de nouvelles parts à la valeur liquidative applicable. Les documents du fonds fixent la souscription initiale minimale, les heures limites et les délais de règlement. Les souscriptions passent par le processus approuvé de la société de gestion et son dépositaire, jamais de manière informelle.",
+    } },
+  { slug: "redemption", category: "Funds", related: ["subscription", "liquidity-risk", "net-asset-value"],
+    term: { en: "Redemption", fr: "Rachat" },
+    definition: {
+      en: "The act of selling units back to the fund to receive cash at the applicable NAV, less any exit fee. Fund documents describe notice periods, settlement delays and any conditions that may apply, which is why the recommended holding period matters. Redeeming during a market downturn turns a paper loss into a realised one.",
+      fr: "Acte de revendre ses parts au fonds pour recevoir des liquidités à la valeur liquidative applicable, moins les frais de sortie éventuels. Les documents du fonds décrivent les délais de préavis, de règlement et les conditions applicables, d'où l'importance de la durée de placement recommandée. Demander un rachat pendant une baisse de marché transforme une perte latente en perte réalisée.",
+    } },
+  { slug: "capitalisation-fund", category: "Funds", related: ["distribution-fund", "compounding", "net-asset-value"],
+    term: { en: "Capitalisation fund", fr: "Fonds de capitalisation" },
+    definition: {
+      en: "A fund that keeps the income it earns and reinvests it, rather than paying it out. The reinvested income shows up as a rising NAV over time, all else equal. Investors receive cash only when they redeem units. This structure suits long-term goals where compounding is wanted and no regular income is needed.",
+      fr: "Fonds qui conserve les revenus qu'il perçoit et les réinvestit au lieu de les verser. Les revenus réinvestis se traduisent par une valeur liquidative en hausse dans le temps, toutes choses égales par ailleurs. Les investisseurs ne reçoivent des liquidités qu'au rachat de leurs parts. Cette structure convient aux objectifs de long terme où l'on recherche l'effet de capitalisation sans besoin de revenus réguliers.",
+    } },
+  { slug: "distribution-fund", category: "Funds", related: ["capitalisation-fund", "coupon", "net-asset-value"],
+    term: { en: "Distribution fund", fr: "Fonds de distribution" },
+    definition: {
+      en: "A fund that periodically pays out the income it has earned to unitholders, typically once a year. On the payment date the NAV falls by the amount distributed; the investor's total position is unchanged before tax. The amount depends on what the fund actually earned and is never guaranteed. It suits investors who want a regular cash flow from their capital.",
+      fr: "Fonds qui verse périodiquement aux porteurs les revenus qu'il a perçus, généralement une fois par an. À la date de paiement, la valeur liquidative baisse du montant distribué ; la position totale de l'investisseur est inchangée avant fiscalité. Le montant dépend de ce que le fonds a réellement gagné et n'est jamais garanti. Il convient aux investisseurs qui souhaitent un flux régulier issu de leur capital.",
+    } },
+  { slug: "depositary", category: "Regulation", related: ["management-company", "auditor", "mutual-fund"],
+    term: { en: "Depositary", fr: "Dépositaire" },
+    definition: {
+      en: "The bank or institution that holds a fund's cash and securities separately from the management company and checks that the manager's instructions comply with the fund's rules. This separation means the firm managing the money never physically controls it. The depositary is named in the fund documents; its presence is a basic safeguard to verify before investing.",
+      fr: "Banque ou institution qui conserve les liquidités et titres d'un fonds séparément de la société de gestion et vérifie que les instructions du gérant respectent les règles du fonds. Cette séparation signifie que la société qui gère l'argent ne le contrôle jamais physiquement. Le dépositaire est nommé dans les documents du fonds ; sa présence est une garantie de base à vérifier avant d'investir.",
+    } },
+  { slug: "auditor", category: "Regulation", related: ["depositary", "management-company"],
+    term: { en: "Auditor (statutory auditor)", fr: "Commissaire aux comptes" },
+    definition: {
+      en: "An independent professional who examines and certifies a fund's accounts, including the valuation of its assets and the calculation of its NAV. The auditor reports to unitholders and the regulator, adding a second layer of control alongside the depositary. The auditor's name appears in the fund's official documentation.",
+      fr: "Professionnel indépendant qui examine et certifie les comptes d'un fonds, y compris la valorisation de ses actifs et le calcul de sa valeur liquidative. Le commissaire aux comptes rend compte aux porteurs et au régulateur, ajoutant une seconde couche de contrôle aux côtés du dépositaire. Son nom figure dans la documentation officielle du fonds.",
+    } },
+  { slug: "management-company", category: "Regulation", related: ["cosumaf", "management-fee", "depositary"],
+    term: { en: "Management company", fr: "Société de gestion" },
+    definition: {
+      en: "A firm licensed by COSUMAF to manage portfolios and collective investment vehicles on behalf of clients. It makes the investment decisions within the fund's rules, reports to unitholders and the regulator, and earns a management fee. It does not hold the assets itself; that is the depositary's role. Always verify the licence reference before placing money.",
+      fr: "Société agréée par la COSUMAF pour gérer des portefeuilles et des véhicules de placement collectif pour le compte de clients. Elle prend les décisions d'investissement dans le cadre des règles du fonds, rend compte aux porteurs et au régulateur, et perçoit des frais de gestion. Elle ne détient pas elle-même les actifs ; c'est le rôle du dépositaire. Vérifiez toujours la référence d'agrément avant de confier de l'argent.",
+    } },
+  { slug: "management-fee", category: "Funds", related: ["entry-exit-fee", "management-company", "net-asset-value"],
+    term: { en: "Management fee", fr: "Frais de gestion" },
+    definition: {
+      en: "The annual charge a fund pays its management company, expressed as a percentage of net assets and usually accrued daily out of the fund's assets. Investors do not pay it separately; it is already reflected in the NAV. Over long periods even small differences in fees compound, so the figure in the fund documents deserves attention.",
+      fr: "Frais annuels qu'un fonds verse à sa société de gestion, exprimés en pourcentage de l'actif net et généralement provisionnés chaque jour sur les actifs du fonds. Les investisseurs ne les paient pas séparément ; ils sont déjà reflétés dans la valeur liquidative. Sur de longues périodes, même de petites différences de frais se cumulent, d'où l'attention à porter au chiffre indiqué dans les documents du fonds.",
+    } },
+  { slug: "entry-exit-fee", category: "Funds", related: ["management-fee", "subscription", "redemption"],
+    term: { en: "Entry and exit fees", fr: "Frais d'entrée et de sortie" },
+    definition: {
+      en: "One-off charges applied when an investor subscribes to or redeems from a fund, expressed as a percentage of the amount. An entry fee reduces the number of units bought; an exit fee reduces the cash received. Some funds waive exit fees after a minimum holding period. These fees are stated in the fund's documents and are distinct from the annual management fee.",
+      fr: "Frais ponctuels appliqués lorsqu'un investisseur souscrit ou demande le rachat de parts, exprimés en pourcentage du montant. Les frais d'entrée réduisent le nombre de parts achetées ; les frais de sortie réduisent les liquidités reçues. Certains fonds suppriment les frais de sortie après une durée de détention minimale. Ces frais figurent dans les documents du fonds et sont distincts des frais de gestion annuels.",
+    } },
+  { slug: "prospectus", category: "Regulation", related: ["management-regulations", "cosumaf", "opcvm"],
+    term: { en: "Prospectus / information document", fr: "Prospectus / document d'information" },
+    definition: {
+      en: "The official document that describes a fund to prospective investors: objective, strategy, classification, risks, fees, minimum subscription, recommended holding period, valuation frequency and the parties involved. It is approved by the regulator before public offering. Reading it is the only reliable way to know what you are buying; marketing material is not a substitute.",
+      fr: "Document officiel qui présente un fonds aux investisseurs potentiels : objectif, stratégie, classification, risques, frais, souscription minimale, durée de placement recommandée, fréquence de valorisation et parties impliquées. Il est visé par le régulateur avant l'offre au public. Sa lecture est le seul moyen fiable de savoir ce que vous achetez ; les supports marketing ne le remplacent pas.",
+    } },
+  { slug: "management-regulations", category: "Regulation", related: ["prospectus", "mutual-fund", "management-company"],
+    term: { en: "Management regulations", fr: "Règlement de gestion" },
+    definition: {
+      en: "The founding contract of a mutual fund, drawn up by the management company and approved by the regulator. It sets the fund's rules: what it may invest in, how units are issued and redeemed, how the NAV is calculated and how often, what fees apply, and the roles of the depositary and auditor. Where a brochure and the regulations differ, the regulations prevail.",
+      fr: "Contrat fondateur d'un fonds commun de placement, établi par la société de gestion et approuvé par le régulateur. Il fixe les règles du fonds : ce dans quoi il peut investir, comment les parts sont émises et rachetées, comment et à quelle fréquence la valeur liquidative est calculée, les frais applicables, et les rôles du dépositaire et du commissaire aux comptes. En cas de divergence avec une brochure, le règlement prévaut.",
+    } },
+  { slug: "benchmark", category: "Valuation", related: ["portfolio", "volatility"],
+    term: { en: "Benchmark", fr: "Indice de référence" },
+    definition: {
+      en: "A reference index or rate against which a fund's or portfolio's results are compared, such as the average yield on CEMAC Treasury securities for a bond fund. A benchmark gives context: it tells you whether a result reflects skill or simply the market. A fund that lacks a stated benchmark is harder to evaluate honestly.",
+      fr: "Indice ou taux de référence auquel on compare les résultats d'un fonds ou d'un portefeuille, par exemple le rendement moyen des titres publics de la CEMAC pour un fonds obligataire. L'indice de référence donne du contexte : il indique si un résultat reflète un savoir-faire ou simplement le marché. Un fonds sans indice de référence déclaré est plus difficile à évaluer honnêtement.",
+    } },
+  { slug: "target-yield", category: "Valuation", related: ["yield", "benchmark", "market-risk"],
+    term: { en: "Target yield", fr: "Rendement cible" },
+    definition: {
+      en: "An objective the manager aims for over the recommended holding period, stated in a fund's documents. It is not a guarantee, not a historical performance, not a current NAV yield and not a forecast approved by the regulator. Actual results can be lower, including negative, depending on markets, credit events and fees. Treat a target as a statement of intent, nothing more.",
+      fr: "Objectif que le gérant vise sur la durée de placement recommandée, indiqué dans les documents d'un fonds. Ce n'est ni une garantie, ni une performance passée, ni un rendement actuel de la valeur liquidative, ni une prévision approuvée par le régulateur. Les résultats réels peuvent être inférieurs, y compris négatifs, selon les marchés, les événements de crédit et les frais. Considérez une cible comme une déclaration d'intention, rien de plus.",
+    } },
+  // ---------------------------------------------------------------- Regulation / institutions
+  { slug: "cosumaf", category: "Regulation", related: ["bvmac", "beac", "cemac", "management-company"],
+    term: { en: "COSUMAF", fr: "COSUMAF" },
+    definition: {
+      en: "The Commission de Surveillance du Marché Financier de l'Afrique Centrale, the regional authority that supervises the CEMAC financial market. It licenses management companies and other market professionals, approves public offerings and collective investment vehicles, and protects investors. A fund offered to the public in CEMAC must carry a COSUMAF reference; a manager must hold a COSUMAF licence.",
+      fr: "Commission de Surveillance du Marché Financier de l'Afrique Centrale, autorité régionale qui supervise le marché financier de la CEMAC. Elle agrée les sociétés de gestion et autres professionnels du marché, vise les offres publiques et les véhicules de placement collectif, et protège les investisseurs. Un fonds proposé au public dans la CEMAC doit porter une référence COSUMAF ; un gérant doit détenir un agrément COSUMAF.",
+    } },
+  { slug: "bvmac", category: "Markets", related: ["cosumaf", "equity", "bond", "liquidity-risk"],
+    term: { en: "BVMAC", fr: "BVMAC" },
+    definition: {
+      en: "The Bourse des Valeurs Mobilières de l'Afrique Centrale, the single regional stock exchange of CEMAC, where listed shares and bonds are traded. It is the secondary market: investors can sell securities bought at issue to other investors before maturity. Trading volumes remain modest, which is why liquidity is a recurring consideration for regional investors.",
+      fr: "Bourse des Valeurs Mobilières de l'Afrique Centrale, bourse régionale unique de la CEMAC, où se négocient les actions et obligations cotées. C'est le marché secondaire : les investisseurs peuvent revendre à d'autres investisseurs, avant l'échéance, des titres achetés à l'émission. Les volumes échangés restent modestes, ce qui explique que la liquidité soit une considération récurrente pour les investisseurs de la région.",
+    } },
+  { slug: "beac", category: "Regulation", related: ["cemac", "treasury-bill", "treasury-bond", "interest-rate-risk"],
+    term: { en: "BEAC", fr: "BEAC" },
+    definition: {
+      en: "The Banque des États de l'Afrique Centrale, the central bank of the six CEMAC countries. It issues the CFA franc, sets monetary policy, and operates the platform through which member states issue Treasury bills and bonds. Its policy rates ripple through deposit rates, bond yields and, by extension, the NAV of bond funds.",
+      fr: "Banque des États de l'Afrique Centrale, banque centrale des six pays de la CEMAC. Elle émet le franc CFA, conduit la politique monétaire et opère la plateforme par laquelle les États membres émettent des bons et obligations du Trésor. Ses taux directeurs se répercutent sur les taux des dépôts, les rendements obligataires et, par extension, la valeur liquidative des fonds obligataires.",
+    } },
+  { slug: "cemac", category: "Markets", related: ["beac", "cosumaf", "bvmac"],
+    term: { en: "CEMAC", fr: "CEMAC" },
+    definition: {
+      en: "The Economic and Monetary Community of Central Africa: Cameroon, the Central African Republic, Chad, the Republic of Congo, Equatorial Guinea and Gabon. Members share the CFA franc (XAF), a central bank (BEAC), a market regulator (COSUMAF) and a stock exchange (BVMAC). A financial product approved in the region operates under one framework across all six countries.",
+      fr: "Communauté Économique et Monétaire de l'Afrique Centrale : Cameroun, République centrafricaine, Tchad, République du Congo, Guinée équatoriale et Gabon. Les membres partagent le franc CFA (XAF), une banque centrale (BEAC), un régulateur de marché (COSUMAF) et une bourse (BVMAC). Un produit financier agréé dans la région fonctionne selon un cadre unique dans les six pays.",
+    } },
+  // ---------------------------------------------------------------- Fixed income
+  { slug: "bond", category: "Fixed income", related: ["coupon", "maturity", "yield", "treasury-bond"],
+    term: { en: "Bond", fr: "Obligation" },
+    definition: {
+      en: "A tradable loan. The issuer, a state or a company, borrows a fixed sum from investors, pays a stated interest (the coupon) at set dates, and repays the principal at maturity. Because the cash flows are fixed, the bond's price moves inversely to market interest rates. Bonds and other debt securities are the core holdings of a bond-oriented fund.",
+      fr: "Prêt négociable. L'émetteur, État ou entreprise, emprunte une somme fixe auprès d'investisseurs, verse un intérêt déterminé (le coupon) à dates fixes, et rembourse le principal à l'échéance. Les flux étant fixes, le prix de l'obligation évolue à l'inverse des taux d'intérêt du marché. Les obligations et autres titres de créance sont le cœur des actifs d'un fonds orienté obligations.",
+    } },
+  { slug: "treasury-bill", category: "Fixed income", related: ["treasury-bond", "beac", "maturity"],
+    term: { en: "Treasury bill (BTA)", fr: "Bon du Trésor assimilable (BTA)" },
+    definition: {
+      en: "A short-term debt security issued by a CEMAC state through the BEAC platform, typically with a maturity of under one year. It is sold below face value and repaid at face value; the difference is the investor's return. Treasury bills are among the most liquid and lowest-risk instruments in the regional market, though not entirely risk-free.",
+      fr: "Titre de créance à court terme émis par un État de la CEMAC via la plateforme de la BEAC, généralement d'une maturité inférieure à un an. Il est vendu sous sa valeur nominale et remboursé à la valeur nominale ; la différence constitue le rendement de l'investisseur. Les bons du Trésor comptent parmi les instruments les plus liquides et les moins risqués du marché régional, sans être totalement sans risque.",
+    } },
+  { slug: "treasury-bond", category: "Fixed income", related: ["treasury-bill", "coupon", "bond", "beac"],
+    term: { en: "Treasury bond (OTA)", fr: "Obligation du Trésor assimilable (OTA)" },
+    definition: {
+      en: "A medium- or long-term debt security issued by a CEMAC state, usually with a maturity of two years or more and periodic coupon payments. Treasury bonds are a primary holding for regional bond funds. Their prices are more sensitive to interest-rate changes than Treasury bills because their cash flows stretch further into the future.",
+      fr: "Titre de créance à moyen ou long terme émis par un État de la CEMAC, généralement d'une maturité de deux ans ou plus, avec paiement périodique de coupons. Les obligations du Trésor constituent un actif de base des fonds obligataires régionaux. Leurs prix sont plus sensibles aux variations de taux que les bons du Trésor, leurs flux s'étendant plus loin dans le futur.",
+    } },
+  { slug: "coupon", category: "Fixed income", related: ["bond", "yield", "distribution-fund"],
+    term: { en: "Coupon", fr: "Coupon" },
+    definition: {
+      en: "The fixed interest payment a bond makes to its holder, usually expressed as a percentage of face value per year. A 6% coupon on a 10,000 FCFA bond pays 600 FCFA annually. The coupon does not change after issue; it is the bond's price that adjusts when market rates move. Inside a fund, accrued coupons are the main source of income.",
+      fr: "Paiement d'intérêt fixe qu'une obligation verse à son porteur, généralement exprimé en pourcentage de la valeur nominale par an. Un coupon de 6 % sur une obligation de 10 000 FCFA verse 600 FCFA par an. Le coupon ne change pas après l'émission ; c'est le prix de l'obligation qui s'ajuste quand les taux de marché bougent. Au sein d'un fonds, les coupons courus sont la principale source de revenus.",
+    } },
+  { slug: "yield", category: "Fixed income", related: ["coupon", "bond", "target-yield", "interest-rate-risk"],
+    term: { en: "Yield", fr: "Rendement" },
+    definition: {
+      en: "The return an investor earns on a bond relative to the price paid, taking into account the coupon and any gain or loss to maturity. When a bond's price falls, its yield rises, and vice versa. Market yields are the reference against which new issues and fund portfolios are judged. Yield is a measure, not a promise.",
+      fr: "Rendement qu'un investisseur tire d'une obligation par rapport au prix payé, en tenant compte du coupon et de tout gain ou perte jusqu'à l'échéance. Quand le prix d'une obligation baisse, son rendement monte, et inversement. Les rendements de marché sont la référence à laquelle on juge les nouvelles émissions et les portefeuilles de fonds. Le rendement est une mesure, pas une promesse.",
+    } },
+  { slug: "maturity", category: "Fixed income", related: ["bond", "duration", "time-horizon"],
+    term: { en: "Maturity", fr: "Échéance" },
+    definition: {
+      en: "The date on which a bond's principal is repaid and the loan ends. Short maturities expose the investor to less interest-rate risk; long maturities expose them to more, but may offer a higher coupon to compensate. A fund's average maturity is one indicator of how its NAV will react to rate changes.",
+      fr: "Date à laquelle le principal d'une obligation est remboursé et le prêt prend fin. Les échéances courtes exposent l'investisseur à moins de risque de taux ; les échéances longues l'exposent davantage, mais peuvent offrir un coupon plus élevé en compensation. L'échéance moyenne d'un fonds est un indicateur de la réaction de sa valeur liquidative aux variations de taux.",
+    } },
+  { slug: "duration", category: "Fixed income", related: ["maturity", "interest-rate-risk", "bond"],
+    term: { en: "Duration", fr: "Duration" },
+    definition: {
+      en: "A measure, in years, of how sensitive a bond or bond portfolio is to changes in interest rates. As a rule of thumb, a one-percentage-point rise in yields lowers the price by roughly the duration in percent, and a fall raises it by the same amount. A fund with a duration of four years is roughly twice as sensitive as one with a duration of two.",
+      fr: "Mesure, en années, de la sensibilité d'une obligation ou d'un portefeuille obligataire aux variations de taux d'intérêt. En règle approximative, une hausse d'un point de pourcentage des rendements fait baisser le prix d'environ la duration en pourcentage, et une baisse le fait monter d'autant. Un fonds de duration quatre ans est environ deux fois plus sensible qu'un fonds de duration deux ans.",
+    } },
+  // ---------------------------------------------------------------- Risk
+  { slug: "market-risk", category: "Risk", related: ["interest-rate-risk", "volatility", "diversification"],
+    term: { en: "Market risk", fr: "Risque de marché" },
+    definition: {
+      en: "The risk that the value of an investment falls because of movements in the market as a whole, rather than because of anything specific to one issuer. For a bond fund, a general rise in regional yields is market risk: every bond in the portfolio is marked lower at once. Diversification across issuers does not remove it; only time horizon and asset mix manage it.",
+      fr: "Risque que la valeur d'un investissement baisse en raison des mouvements du marché dans son ensemble, et non d'un élément propre à un émetteur. Pour un fonds obligataire, une hausse générale des rendements régionaux est un risque de marché : toutes les obligations du portefeuille sont dépréciées en même temps. La diversification entre émetteurs ne l'élimine pas ; seuls l'horizon et la composition d'actifs permettent de le gérer.",
+    } },
+  { slug: "credit-risk", category: "Risk", related: ["bond", "diversification", "concentration-risk"],
+    term: { en: "Credit risk", fr: "Risque de crédit" },
+    definition: {
+      en: "The risk that a bond issuer fails to pay interest or repay principal on time. A fund that holds a bond from an issuer whose situation deteriorates must value it lower, even before any missed payment. Sovereign and corporate issuers carry different degrees of credit risk, and a higher coupon often signals that the market sees more of it.",
+      fr: "Risque qu'un émetteur d'obligation ne paie pas les intérêts ou ne rembourse pas le principal à temps. Un fonds détenant une obligation d'un émetteur dont la situation se dégrade doit la valoriser plus bas, avant même tout défaut de paiement. Émetteurs souverains et entreprises présentent des degrés différents de risque de crédit, et un coupon plus élevé signale souvent que le marché en perçoit davantage.",
+    } },
+  { slug: "interest-rate-risk", category: "Risk", related: ["duration", "bond", "beac"],
+    term: { en: "Interest rate risk", fr: "Risque de taux" },
+    definition: {
+      en: "The risk that a bond's price, and therefore a bond fund's NAV, falls when market interest rates rise. The effect is larger for longer-dated bonds, measured by duration. It is the main reason a bond fund's value can fluctuate even when every issuer pays on time, and why a recommended holding period is stated.",
+      fr: "Risque que le prix d'une obligation, et donc la valeur liquidative d'un fonds obligataire, baisse quand les taux d'intérêt du marché montent. L'effet est plus fort pour les obligations longues, mesuré par la duration. C'est la raison principale pour laquelle la valeur d'un fonds obligataire peut fluctuer même quand chaque émetteur paie à temps, et pourquoi une durée de placement recommandée est indiquée.",
+    } },
+  { slug: "liquidity-risk", category: "Risk", related: ["redemption", "bvmac", "time-horizon"],
+    term: { en: "Liquidity risk", fr: "Risque de liquidité" },
+    definition: {
+      en: "The risk that an asset cannot be sold quickly at a fair price. Regional bond markets are thinner than large international markets, so a fund facing many simultaneous redemptions may have to sell its most liquid holdings first or apply the conditions set out in its documents. Matching your horizon to the fund's recommended holding period is the practical defence.",
+      fr: "Risque qu'un actif ne puisse pas être vendu rapidement à un prix juste. Les marchés obligataires régionaux sont plus étroits que les grands marchés internationaux ; un fonds confronté à de nombreux rachats simultanés peut devoir vendre d'abord ses actifs les plus liquides ou appliquer les conditions prévues par ses documents. Aligner son horizon sur la durée de placement recommandée est la défense pratique.",
+    } },
+  { slug: "concentration-risk", category: "Risk", related: ["diversification", "credit-risk", "asset-allocation"],
+    term: { en: "Concentration risk", fr: "Risque de concentration" },
+    definition: {
+      en: "The risk created by holding too much in a single issuer, sector, asset or country. A saver with most of their wealth in one family business, or one plot of land, carries concentration risk whether or not they think of it as an investment. Diversification is the direct remedy; regulated funds are subject to limits on exposure to any one issuer.",
+      fr: "Risque créé par une exposition trop importante à un seul émetteur, secteur, actif ou pays. Un épargnant dont l'essentiel du patrimoine est dans une seule entreprise familiale, ou un seul terrain, porte un risque de concentration, qu'il le considère ou non comme un investissement. La diversification en est le remède direct ; les fonds réglementés sont soumis à des limites d'exposition par émetteur.",
+    } },
+  { slug: "currency-risk", category: "Risk", related: ["cemac", "market-risk"],
+    term: { en: "Currency risk", fr: "Risque de change" },
+    definition: {
+      en: "The risk that exchange-rate movements change the value of an investment held in a currency different from the one you spend. The CFA franc's fixed parity with the euro reduces this risk for CEMAC investors relative to the euro, but a diaspora investor earning in dollars or pounds still bears it. Assets denominated in other currencies add it to any portfolio.",
+      fr: "Risque que les variations de change modifient la valeur d'un investissement détenu dans une devise différente de celle dans laquelle vous dépensez. La parité fixe du franc CFA avec l'euro réduit ce risque pour les investisseurs de la CEMAC vis-à-vis de l'euro, mais un investisseur de la diaspora gagnant en dollars ou en livres le supporte toujours. Les actifs libellés en autres devises l'ajoutent à tout portefeuille.",
+    } },
+  { slug: "volatility", category: "Risk", related: ["market-risk", "risk-tolerance", "time-horizon"],
+    term: { en: "Volatility", fr: "Volatilité" },
+    definition: {
+      en: "The degree to which an investment's value moves up and down over time. Cash and Treasury bills have low volatility; listed shares have high volatility; bond funds sit in between, depending on duration. Volatility is not the same as loss, but it determines how uncomfortable the journey is and how much a forced early exit could cost.",
+      fr: "Amplitude des variations de la valeur d'un investissement dans le temps. Les liquidités et bons du Trésor ont une faible volatilité ; les actions cotées une forte volatilité ; les fonds obligataires se situent entre les deux, selon leur duration. La volatilité n'est pas synonyme de perte, mais elle détermine l'inconfort du parcours et le coût potentiel d'une sortie forcée anticipée.",
+    } },
+  { slug: "risk-tolerance", category: "Risk", related: ["volatility", "time-horizon", "asset-allocation"],
+    term: { en: "Risk tolerance", fr: "Tolérance au risque" },
+    definition: {
+      en: "How much fluctuation in the value of their investments a person can accept, financially and emotionally, without abandoning their plan. It depends on income stability, other savings, obligations and temperament. Knowing it honestly prevents the classic mistake of buying something volatile, panicking at the first drop and selling at the worst moment.",
+      fr: "Niveau de fluctuation de la valeur de ses investissements qu'une personne peut accepter, financièrement et émotionnellement, sans abandonner son plan. Elle dépend de la stabilité des revenus, des autres économies, des obligations et du tempérament. La connaître honnêtement évite l'erreur classique : acheter quelque chose de volatil, paniquer à la première baisse et vendre au pire moment.",
+    } },
+  // ---------------------------------------------------------------- Personal finance
+  { slug: "inflation", category: "Personal finance", related: ["purchasing-power", "beac", "compounding"],
+    term: { en: "Inflation", fr: "Inflation" },
+    definition: {
+      en: "The general rise in prices over time, which means a fixed amount of money buys less in the future than today. Cash left idle loses purchasing power even though the number on the account does not change. Comparing any investment return with inflation tells you whether your money actually grew in real terms or only on paper.",
+      fr: "Hausse générale des prix dans le temps, qui fait qu'un montant fixe d'argent achète moins demain qu'aujourd'hui. Des liquidités laissées inactives perdent du pouvoir d'achat même si le chiffre du compte ne change pas. Comparer tout rendement d'investissement à l'inflation vous dit si votre argent a réellement fructifié en termes réels ou seulement sur le papier.",
+    } },
+  { slug: "purchasing-power", category: "Personal finance", related: ["inflation", "time-horizon"],
+    term: { en: "Purchasing power", fr: "Pouvoir d'achat" },
+    definition: {
+      en: "What a given sum of money can actually buy. It is the real measure of wealth, as opposed to the nominal figure. If 100,000 FCFA buys a certain basket of goods today and prices rise, the same 100,000 FCFA buys a smaller basket later. Protecting purchasing power is the fundamental reason to consider investing rather than only saving.",
+      fr: "Ce qu'une somme d'argent donnée peut réellement acheter. C'est la mesure réelle de la richesse, par opposition au chiffre nominal. Si 100 000 FCFA achètent un certain panier de biens aujourd'hui et que les prix montent, les mêmes 100 000 FCFA achètent un panier plus petit plus tard. Protéger le pouvoir d'achat est la raison fondamentale d'envisager l'investissement plutôt que la seule épargne.",
+    } },
+  { slug: "compounding", category: "Personal finance", related: ["capitalisation-fund", "time-horizon", "inflation"],
+    term: { en: "Compounding", fr: "Capitalisation (intérêts composés)" },
+    definition: {
+      en: "Earning a return on previous returns, not just on the original amount. If 100,000 FCFA grows by a hypothetical 5% in a year and the gain is reinvested, the next year's 5% applies to 105,000 FCFA. Over long periods the effect is powerful, which is why starting early matters more than starting big. Compounding also works against you with debt.",
+      fr: "Obtenir un rendement sur les rendements précédents, et pas seulement sur le montant initial. Si 100 000 FCFA croissent d'un hypothétique 5 % en un an et que le gain est réinvesti, les 5 % de l'année suivante s'appliquent à 105 000 FCFA. Sur de longues périodes, l'effet est puissant, d'où l'importance de commencer tôt plutôt que de commencer gros. La capitalisation joue aussi contre vous avec une dette.",
+    } },
+  { slug: "diversification", category: "Personal finance", related: ["concentration-risk", "asset-allocation", "portfolio"],
+    term: { en: "Diversification", fr: "Diversification" },
+    definition: {
+      en: "Spreading investments across different issuers, asset types, maturities or regions so that a single bad outcome does not damage the whole portfolio. It reduces concentration risk and smooths results; it does not eliminate market risk. A mutual fund is a practical way for a small investor to diversify, because the pooled capital can hold many securities at once.",
+      fr: "Répartir ses investissements entre différents émetteurs, types d'actifs, échéances ou régions, afin qu'un seul mauvais résultat n'abîme pas tout le portefeuille. Elle réduit le risque de concentration et lisse les résultats ; elle n'élimine pas le risque de marché. Un fonds commun de placement est un moyen pratique pour un petit investisseur de se diversifier, le capital mutualisé pouvant détenir de nombreux titres à la fois.",
+    } },
+  { slug: "asset-allocation", category: "Personal finance", related: ["diversification", "risk-tolerance", "time-horizon", "portfolio"],
+    term: { en: "Asset allocation", fr: "Allocation d'actifs" },
+    definition: {
+      en: "The decision about how to split money between broad categories such as cash, Treasury securities, bonds, shares, property or a private business. It is the main driver of how a portfolio behaves, more than the choice of any single security. Allocation should follow the purpose and horizon of the money; it is a personal decision, not a formula.",
+      fr: "Décision sur la répartition de l'argent entre grandes catégories : liquidités, titres publics, obligations, actions, immobilier ou entreprise privée. C'est le principal déterminant du comportement d'un portefeuille, plus que le choix d'un titre particulier. L'allocation doit suivre l'objectif et l'horizon de l'argent ; c'est une décision personnelle, pas une formule.",
+    } },
+  { slug: "time-horizon", category: "Personal finance", related: ["asset-allocation", "liquidity-risk", "maturity"],
+    term: { en: "Time horizon", fr: "Horizon de placement" },
+    definition: {
+      en: "How long money can remain invested before it is needed. A short horizon calls for stable, liquid instruments; a long horizon can absorb fluctuations in exchange for the possibility of higher returns. A fund's recommended holding period expresses the minimum horizon it is designed for. Mismatching horizon and instrument is the most common avoidable error.",
+      fr: "Durée pendant laquelle l'argent peut rester investi avant d'être nécessaire. Un horizon court appelle des instruments stables et liquides ; un horizon long peut absorber des fluctuations en échange de rendements potentiellement plus élevés. La durée de placement recommandée d'un fonds exprime l'horizon minimal pour lequel il est conçu. L'inadéquation entre horizon et instrument est l'erreur évitable la plus fréquente.",
+    } },
+  { slug: "portfolio", category: "Personal finance", related: ["asset-allocation", "diversification", "benchmark"],
+    term: { en: "Portfolio", fr: "Portefeuille" },
+    definition: {
+      en: "The complete set of investments held by a person, a company or a fund. Thinking in portfolio terms means looking at the whole rather than at each holding in isolation: how the pieces balance one another, what the overall risk is, and whether the mix matches the goals. A single fund is itself a portfolio of securities.",
+      fr: "Ensemble des investissements détenus par une personne, une entreprise ou un fonds. Raisonner en portefeuille, c'est regarder le tout plutôt que chaque ligne isolément : comment les éléments s'équilibrent, quel est le risque global, et si la composition correspond aux objectifs. Un fonds est lui-même un portefeuille de titres.",
+    } },
+  { slug: "equity", category: "Markets", related: ["bond", "bvmac", "volatility"],
+    term: { en: "Equity (share)", fr: "Action" },
+    definition: {
+      en: "A share is a fraction of ownership in a company. Shareholders may receive dividends and benefit if the company grows, but they rank last if it fails and their shares can lose all value. Shares are more volatile than bonds. In CEMAC, listed shares trade on the BVMAC. Equity is the opposite of debt: an owner, not a lender.",
+      fr: "Une action est une fraction de la propriété d'une entreprise. Les actionnaires peuvent percevoir des dividendes et profiter de la croissance de l'entreprise, mais ils passent en dernier en cas de faillite et leurs actions peuvent perdre toute valeur. Les actions sont plus volatiles que les obligations. Dans la CEMAC, les actions cotées se négocient à la BVMAC. L'action est l'inverse de la dette : propriétaire, non prêteur.",
+    } },
+  { slug: "tontine", category: "Personal finance", related: ["mutual-fund", "diversification", "emergency-fund"],
+    term: { en: "Tontine", fr: "Tontine" },
+    definition: {
+      en: "A traditional rotating savings group in which members contribute a fixed amount at regular intervals and each takes the pooled sum in turn. Tontines build discipline and trust and are deeply rooted across Central Africa. They pool money but do not invest it, carry no regulatory protection and depend entirely on the members' reliability. They are a useful starting point for understanding how a fund pools capital.",
+      fr: "Groupe d'épargne rotative traditionnel dans lequel les membres versent un montant fixe à intervalles réguliers et reçoivent chacun à leur tour la somme mise en commun. Les tontines créent discipline et confiance et sont profondément enracinées en Afrique centrale. Elles mutualisent l'argent mais ne l'investissent pas, n'offrent aucune protection réglementaire et dépendent entièrement de la fiabilité des membres. Elles sont un bon point de départ pour comprendre comment un fonds mutualise le capital.",
+    } },
+  { slug: "emergency-fund", category: "Personal finance", related: ["time-horizon", "liquidity-risk", "tontine"],
+    term: { en: "Emergency fund", fr: "Épargne de précaution" },
+    definition: {
+      en: "Money set aside, in cash or an instant-access account, to cover unexpected expenses or a loss of income, typically three to six months of essential spending. It exists so that an emergency never forces you to sell an investment at a bad moment or borrow at a high cost. Building it is the sensible first step before any longer-term placement.",
+      fr: "Argent mis de côté, en liquidités ou sur un compte disponible immédiatement, pour couvrir des dépenses imprévues ou une perte de revenus, généralement trois à six mois de dépenses essentielles. Elle existe pour qu'une urgence n'oblige jamais à vendre un investissement au mauvais moment ni à emprunter à un coût élevé. La constituer est le premier pas raisonnable avant tout placement de plus long terme.",
+    } },
+  // ---------------------------------------------------------------- Corporate finance
+  { slug: "cash-flow", category: "Corporate finance", related: ["working-capital", "treasury"],
+    term: { en: "Cash flow", fr: "Flux de trésorerie" },
+    definition: {
+      en: "The movement of money into and out of a business or household over a period. Positive cash flow means more came in than went out. A business can be profitable on paper and still run out of cash if customers pay late and suppliers demand payment now, which is why cash flow, not profit, decides short-term survival.",
+      fr: "Mouvement de l'argent entrant et sortant d'une entreprise ou d'un ménage sur une période. Un flux de trésorerie positif signifie que plus d'argent est entré que sorti. Une entreprise peut être rentable sur le papier et pourtant manquer de liquidités si les clients paient tard et que les fournisseurs exigent un paiement immédiat ; c'est pourquoi le flux de trésorerie, et non le bénéfice, décide de la survie à court terme.",
+    } },
+  { slug: "working-capital", category: "Corporate finance", related: ["cash-flow", "treasury"],
+    term: { en: "Working capital", fr: "Fonds de roulement" },
+    definition: {
+      en: "The money a business needs to fund its day-to-day operations: stock, amounts owed by customers, and cash, less amounts owed to suppliers. The longer the gap between paying for inputs and collecting from customers, the more working capital is tied up. Managing it well frees cash that would otherwise sit idle in the cycle.",
+      fr: "Argent dont une entreprise a besoin pour financer son exploitation courante : stocks, créances clients et liquidités, moins les dettes fournisseurs. Plus l'écart est long entre le paiement des intrants et l'encaissement des clients, plus le fonds de roulement immobilisé est important. Bien le gérer libère des liquidités qui resteraient sinon bloquées dans le cycle.",
+    } },
+  { slug: "treasury", category: "Corporate finance", related: ["cash-flow", "working-capital", "time-horizon"],
+    term: { en: "Treasury (corporate)", fr: "Trésorerie (d'entreprise)" },
+    definition: {
+      en: "The function in a company that manages cash, liquidity and short-term placements. Good treasury practice means forecasting cash needs, keeping reserves for obligations, and placing only genuine surplus, matched to the period it can be away. For an SME it can be as simple as a weekly forecast and separate accounts for operations, obligations and surplus.",
+      fr: "Fonction de l'entreprise qui gère les liquidités, la liquidité et les placements à court terme. Une bonne pratique de trésorerie consiste à prévoir les besoins de liquidités, à conserver des réserves pour les obligations, et à ne placer que l'excédent réel, en adéquation avec la période d'immobilisation possible. Pour une PME, cela peut se résumer à une prévision hebdomadaire et à des comptes séparés pour l'exploitation, les obligations et l'excédent.",
+    } },
+];

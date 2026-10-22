@@ -7,7 +7,7 @@ import { Logo } from "@/components/ui/logo";
 export function SiteFooter() {
   const { locale, t } = useLocale();
   const pathname = usePathname();
-  if (pathname.includes("/vision") || /\/learn\/[^/]+\/[^/]+$/.test(pathname)) return null;
+  if (pathname.includes("/vision") || /\/learn\/[^/]+\/[^/]+$/.test(pathname) || /\/certificates\/[^/]+$/.test(pathname)) return null;
   const L = (p: string) => `/${locale}${p}`;
   return (
     <footer className="relative mt-24 overflow-hidden bg-midnight text-white">

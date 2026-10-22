@@ -28,7 +28,6 @@ export function SiteHeader({ user }: { user: SessionUser | null }) {
   const [scrolled, setScrolled] = useState(false);
   const [userMenu, setUserMenu] = useState(false);
   const isHome = pathname === `/${locale}`;
-  const isLesson = /\/learn\/[^/]+\/[^/]+$/.test(pathname) || pathname.includes("/vision");
 
   useEffect(() => {
     const fn = () => setScrolled(window.scrollY > 24);
@@ -44,10 +43,10 @@ export function SiteHeader({ user }: { user: SessionUser | null }) {
   const presenter = user && (user.isDemoPresenter || user.role === "super_admin" || user.role === "academy_manager");
   const darkHeader = isHome && !scrolled && !open;
 
-  if (pathname.includes("/vision")) return null;
+  if (pathname.includes("/vision") || /\/learn\/[^/]+\/[^/]+$/.test(pathname) || /\/certificates\/[^/]+$/.test(pathname)) return null;
 
   return (
-    <header className={cn("fixed inset-x-0 top-0 z-50 transition-all duration-500", darkHeader ? "bg-transparent" : "border-b border-mist/60 bg-white/85 backdrop-blur-xl", isLesson && "relative")}>
+    <header className={cn("fixed inset-x-0 top-0 z-50 transition-all duration-500", darkHeader ? "bg-transparent" : "border-b border-mist/60 bg-white/85 backdrop-blur-xl")}>
       <div className="mx-auto flex h-[72px] w-full max-w-[88rem] items-center justify-between px-5 sm:px-8">
         <Link href={`/${locale}`} aria-label="Stoneshed Academy">
           <Logo light={darkHeader} />
