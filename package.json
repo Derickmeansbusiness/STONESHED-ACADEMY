@@ -2,7 +2,7 @@
   "name": "stoneshed-academy",
   "version": "0.1.0",
   "private": true,
-  "description": "Stoneshed Academy — bilingual financial education, investment literacy and investor engagement platform for the CEMAC region.",
+  "description": "Stoneshed Academy \u2014 bilingual financial education, investment literacy and investor engagement platform for the CEMAC region.",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -39,5 +39,8 @@
     "tailwindcss": "^4.3.3",
     "tsx": "^4.23.15",
     "typescript": "^5"
+  },
+  "engines": {
+    "node": "22.x"
   }
 }
