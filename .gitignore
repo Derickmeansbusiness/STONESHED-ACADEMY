@@ -1,0 +1,15 @@
+node_modules
+.next
+out
+*.log
+.env
+.env.local
+.env.*.local
+data/*.db
+data/*.db-journal
+data/*.db-wal
+data/*.db-shm
+.DS_Store
+tsconfig.tsbuildinfo
+next-env.d.ts
+.claude-flow
